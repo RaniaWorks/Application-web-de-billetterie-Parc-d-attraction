@@ -1,0 +1,434 @@
+:root {
+    --marine-900: #042C53;
+    --marine-700: #0C447C;
+    --marine-500: #185FA5;
+    --marine-100: #E6F1FB;
+
+    --teal-900: #04342C;
+    --teal-700: #085041;
+    --teal-500: #0F6E56;
+    --teal-100: #E1F5EE;
+
+    --amber-bg: #FAEEDA;
+    --amber-text: #854F0B;
+
+    --bg-page: #F7F8FA;
+    --text-main: #1E293B;
+    --text-muted: #6B7280;
+    --border: #E2E5EA;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-page);
+    margin: 0;
+    padding: 0;
+    color: var(--text-main);
+}
+
+/* ============ STRUCTURE GÉNÉRALE ============ */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ============ MENU LATÉRAL ============ */
+.sidebar {
+    width: 220px;
+    background-color: var(--marine-900);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    padding: 0 8px;
+}
+
+.sidebar-clock {
+    color: #9DB8D6;
+    font-size: 12px;
+    padding: 0 8px;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #C6D9EE;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background-color 0.15s ease;
+}
+
+.sidebar a:hover {
+    background-color: var(--marine-700);
+    color: white;
+}
+
+.sidebar a.active {
+    background-color: var(--marine-500);
+    color: white;
+    font-weight: 600;
+}
+
+/* ============ ZONE PRINCIPALE ============ */
+.main-content {
+    flex: 1;
+    padding: 32px 40px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+}
+
+/* ============ CARTES STATS ============ */
+.stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--marine-900);
+}
+
+.stat-value.teal { color: var(--teal-700); }
+
+/* ============ CARTES ATTRACTIONS ============ */
+.attractions {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.carte {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 36px 30px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carte-icone {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.carte h2 {
+    font-size: 19px;
+    margin: 8px 0;
+}
+
+.prix-badge {
+    font-size: 17px;
+    padding: 6px 18px;
+}
+
+.carte:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(4, 44, 83, 0.08);
+}
+
+.carte.marine { border-color: var(--marine-500); }
+.carte.teal { border-color: var(--teal-500); }
+
+.carte-icone {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.carte h2 {
+    font-size: 16px;
+    margin: 6px 0;
+    color: var(--text-main);
+}
+
+.prix-badge {
+    display: inline-block;
+    background-color: var(--amber-bg);
+    color: var(--amber-text);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin: 8px 0 16px 0;
+}
+
+/* ============ FORMULAIRE QUANTITÉ ============ */
+.form-vente label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-vente input[type="number"] {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.form-vente button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: opacity 0.15s ease;
+}
+
+.carte.marine .form-vente button { background-color: var(--marine-500); }
+.carte.teal .form-vente button { background-color: var(--teal-500); }
+.form-vente button:hover { opacity: 0.9; }
+
+/* ============ TABLEAUX ============ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+}
+
+th {
+    background-color: var(--marine-900);
+    color: white;
+    padding: 12px;
+    font-size: 13px;
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    padding: 11px 12px;
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+}
+
+tr:hover td { background-color: var(--marine-100); }
+
+h3 {
+    font-size: 16px;
+    color: var(--text-main);
+    margin: 28px 0 14px 0;
+}
+
+a.lien-detail {
+    color: var(--marine-500);
+    font-weight: 600;
+    text-decoration: none;
+}
+a.lien-detail:hover { text-decoration: underline; }
+
+/* ============ TICKET IMPRIMABLE ============ */
+.ticket-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.ticket {
+    width: 300px;
+    background: white;
+    border: 2px dashed var(--marine-500);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.ticket-header {
+    background: var(--marine-900);
+    color: white;
+    margin: -20px -20px 15px -20px;
+    padding: 16px 10px;
+    border-radius: 12px 12px 0 0;
+}
+
+.ticket-logo { font-size: 30px; }
+
+.ticket-header h2 {
+    margin: 6px 0 2px 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.ticket-header .tagline {
+    margin: 0;
+    font-size: 11px;
+    color: #9DB8D6;
+}
+
+.ticket-separator {
+    color: var(--teal-700);
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.ticket-icon { font-size: 36px; margin-bottom: 4px; }
+
+.ticket-attraction {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--teal-700);
+    margin: 4px 0;
+}
+
+.ticket-prix {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--amber-text);
+    background-color: var(--amber-bg);
+    display: inline-block;
+    padding: 4px 18px;
+    border-radius: 20px;
+    margin-top: 4px;
+}
+
+.ticket-footer {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 12px 0 4px 0;
+}
+
+.ticket-merci {
+    font-size: 12px;
+    color: var(--teal-700);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.btn-retour {
+    display: block;
+    text-align: center;
+    background-color: var(--marine-900);
+    color: white;
+    padding: 11px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 220px;
+    margin: 20px auto 0 auto;
+    font-weight: 600;
+}
+
+@media print {
+    .ticket { border: 2px dashed black; }
+    .ticket-header { background: var(--marine-900) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+    .page-break { page-break-after: always; }
+}
+
+/* ============ BANNIÈRE ANIMÉE ============ */
+.banniere-fun {
+    position: relative;
+    background: linear-gradient(135deg, var(--marine-900), var(--teal-700));
+    border-radius: 16px;
+    padding: 36px 20px;
+    text-align: center;
+    overflow: hidden;
+    height: 160px;
+    margin-bottom: 30px;
+}
+
+.deco {
+    position: absolute;
+    font-size: 26px;
+}
+
+.bateau { left: 10%; top: 75px; font-size: 30px; animation: balancer 3s ease-in-out infinite; }
+.roue { right: 10%; top: 20px; font-size: 28px; animation: tourner 10s linear infinite; }
+.manege { left: 48%; top: 100px; font-size: 26px; animation: balancer 2.5s ease-in-out infinite 0.4s; }
+.ballon1 { left: 28%; top: 20px; font-size: 24px; animation: flotter 4s ease-in-out infinite 0.3s; }
+.ballon2 { right: 28%; top: 80px; font-size: 22px; animation: flotter 5s ease-in-out infinite 0.8s; }
+.nuage1 { left: 5%; top: 15px; font-size: 20px; animation: flotter 4.5s ease-in-out infinite 1.2s; }
+.nuage2 { right: 5%; top: 100px; font-size: 24px; animation: flotter 5.5s ease-in-out infinite 0.6s; }
+
+.banniere-texte {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 30px;
+    animation: pulser 2.5s ease-in-out infinite;
+}
+
+.banniere-soustexte {
+    position: relative;
+    z-index: 2;
+    color: #B5D4F4;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+@keyframes flotter {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes tourner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes balancer {
+    0%, 100% { transform: rotate(-12deg); }
+    50% { transform: rotate(12deg); }
+}
+
+@keyframes pulser {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets - Parc Adventure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        window.onload = function() { window.print(); }
+    </script>
+</head>
+<body>
+    {% for ticket in tickets %}
+    <div class="ticket-wrapper">
+        <div class="ticket">
+            <div class="ticket-header">
+                <div class="ticket-logo">🎢</div>
+                <h2>PARC ADVENTURE</h2>
+                <p class="tagline">Aventure & Sensations</p>
+            </div>
+            <div class="ticket-separator">✂ - - - - - - - - - - - - - - - - - - - -</div>
+            <div class="ticket-icon">{% if "Pirate" in ticket[2] %}🏴‍☠️{% else %}🎡{% endif %}</div>
+            <p class="ticket-attraction">{{ ticket[2] }}</p>
+            <p class="ticket-prix">{{ ticket[3]|int }} DA</p>
+            <div class="ticket-separator">- - - - - - - - - - - - - - - - - - - - -</div>
+            <div class="ticket-footer">
+                <p>N° Ticket : <strong>{{ "%05d"|format(ticket[0]) }}</strong></p>
+                <p>{{ ticket[4] }}</p>
+            </div>
+            <p class="ticket-merci">Bonne visite et amusez-vous bien !</p>
+        </div>
+    </div>
+    {% if not loop.last %}<div class="page-break"></div>{% endif %}
+    {% endfor %}
+
+    <div class="no-print">
+        <p style="text-align:center; font-weight:bold;">{{ tickets|length }} ticket(s) généré(s)</p>
+        <a href="/" class="btn-retour">⬅ Retour à la caisse</a>
+    </div>
+</body>
+</html>

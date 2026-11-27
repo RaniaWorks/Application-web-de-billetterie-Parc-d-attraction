@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Historique{% endblock %}
+{% block content %}
+
+<div class="page-title">Historique des jours</div>
+<div class="page-subtitle">Consultez les ventes des jours précédents</div>
+
+<table>
+    <tr><th>Date</th><th>Tickets vendus</th><th>Total encaissé</th><th></th></tr>
+    {% for j in jours %}
+    <tr>
+        <td>{{ j[0] }}</td>
+        <td>{{ j[1] }}</td>
+        <td>{{ j[2]|int }} DA</td>
+        <td><a href="{{ url_for('detail_jour', jour=j[0]) }}" class="lien-detail">Voir le détail →</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

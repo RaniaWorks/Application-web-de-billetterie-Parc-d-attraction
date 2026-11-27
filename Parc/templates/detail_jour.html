@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Détail du {{ jour }}{% endblock %}
+{% block content %}
+
+<div class="page-title">Détail du {{ jour }}</div>
+<div class="page-subtitle"><a href="{{ url_for('historique') }}" class="lien-detail">← Retour à l'historique</a></div>
+
+<div class="stats-row">
+    <div class="stat-card">
+        <div class="stat-label">Tickets vendus</div>
+        <div class="stat-value">{{ total_tickets }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Total encaissé</div>
+        <div class="stat-value teal">{{ total_argent|int }} DA</div>
+    </div>
+</div>
+
+<h3>Détail par attraction</h3>
+<table>
+    <tr><th>Attraction</th><th>Tickets vendus</th><th>Montant</th></tr>
+    {% for d in details %}
+    <tr><td>{{ d[0] }}</td><td>{{ d[1] }}</td><td>{{ d[2]|int }} DA</td></tr>
+    {% endfor %}
+</table>
+
+<h3>Liste des tickets</h3>
+<table>
+    <tr><th>N°</th><th>Attraction</th><th>Prix</th><th>Heure</th></tr>
+    {% for t in tickets %}
+    <tr><td>{{ "%05d"|format(t[0]) }}</td><td>{{ t[2] }}</td><td>{{ t[3]|int }} DA</td><td>{{ t[4] }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

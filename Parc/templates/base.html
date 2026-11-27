@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Parc Adventure{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-layout">
+        <div class="sidebar">
+            <div class="sidebar-title">🎢 Parc Adventure</div>
+            <div class="sidebar-clock" id="horloge"></div>
+            <a href="{{ url_for('accueil') }}" class="{{ 'active' if active == 'caisse' else '' }}">🎟️ Caisse</a>
+            <a href="{{ url_for('rapport') }}" class="{{ 'active' if active == 'rapport' else '' }}">📊 Rapport du jour</a>
+            <a href="{{ url_for('historique') }}" class="{{ 'active' if active == 'historique' else '' }}">📅 Historique</a>
+        </div>
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script>
+        function mettreAJourHorloge() {
+            const maintenant = new Date();
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            const dateStr = maintenant.toLocaleDateString('fr-FR', options);
+            const heureStr = maintenant.toLocaleTimeString('fr-FR');
+            const el = document.getElementById('horloge');
+            if (el) el.innerText = dateStr + " — " + heureStr;
+        }
+        mettreAJourHorloge();
+        setInterval(mettreAJourHorloge, 1000);
+    </script>
+</body>
+</html>

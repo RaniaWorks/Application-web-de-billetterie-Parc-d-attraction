@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Caisse - Parc Adventure{% endblock %}
+{% block content %}
+
+<div class="banniere-fun">
+    <div class="deco bateau">🏴‍☠️</div>
+    <div class="deco roue">🎡</div>
+    <div class="deco ballon ballon1">🎈</div>
+    <div class="deco ballon ballon2">🎈</div>
+    <div class="deco manege">🎠</div>
+    <div class="deco nuage nuage1">☁️</div>
+    <div class="deco nuage nuage2">☁️</div>
+
+    <div class="banniere-texte">L'aventure commence ici !</div>
+    <div class="banniere-soustexte">🎢 Parc Adventure</div>
+</div>
+
+<div class="attractions">
+    {% for a in attractions %}
+    <div class="carte {{ 'marine' if loop.index0 % 2 == 0 else 'teal' }}">
+        <div class="carte-icone">{% if "Pirate" in a[1] %}🏴‍☠️{% else %}🎡{% endif %}</div>
+        <h2>{{ a[1] }}</h2>
+        <div class="prix-badge">{{ a[2]|int }} DA</div>
+        <form action="{{ url_for('vendre', attraction_id=a[0]) }}" method="POST" class="form-vente">
+            <label for="qte-{{ a[0] }}">Nombre de tickets</label>
+            <input type="number" id="qte-{{ a[0] }}" name="quantite" value="1" min="1" max="20" required>
+            <button type="submit">Vendre</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
